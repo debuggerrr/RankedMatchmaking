@@ -1,9 +1,9 @@
 from setuptools import setup, find_packages
 
 setup(
-    name="MatchmakingUsingFlink",
+    name="RankedMatchmaking",
     version="0.0.1",
-    description="Matchmaking Using Flink",
+    description="RankedMatchmaking Using Flink",
     author="sid-vibha",
     long_description_content_type="text/markdown",
     classifiers=[
