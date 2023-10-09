@@ -4,7 +4,7 @@ setup(
     name="RankedMatchmaking",
     version="0.0.1",
     description="RankedMatchmaking Using Flink",
-    author="sid-vibha",
+    author="Siddhesh K",
     long_description_content_type="text/markdown",
     classifiers=[
         "Development Status :: 3 - Alpha",
