@@ -8,8 +8,8 @@ class TestExtractingRecordAttributes(unittest.TestCase):
     @patch('services.extract_record_attributes.ast.literal_eval')
     def test_process(self, mock_literal_eval):
         mock_context = MagicMock()
-        mock_element1 = ('{"user": "user1", "rank": "rank1"}', 'timestamp1')
-        mock_element2 = ('{"user": "user2", "rank": "rank2"}', 'timestamp2')
+        mock_element1 = ('("user1", "gold1")')
+        mock_element2 = ('("user2", "silver1")')
 
         mock_literal_eval.side_effect = lambda s: eval(s)
 
@@ -22,6 +22,5 @@ class TestExtractingRecordAttributes(unittest.TestCase):
 
         results = list(extractor.process(key, mock_context, elements))
 
-        expected_results = [('{"user": "user1", "rank": "rank1"}', 'timestamp1', '1234567890'),
-                            ('{"user": "user2", "rank": "rank2"}', 'timestamp2', '1234567890')]
-        self.assertEqual(results, expected_results)
+        expected_results = [('user1', 'gold', '1234567890'), ('user2', 'silver', '1234567890')]
+        self.assertEqual(expected_results, results)
