@@ -2,6 +2,7 @@ from typing import Iterable, Tuple
 from pyflink.datastream import ProcessWindowFunction
 from model.model import UserData
 import ast
+import re
 
 
 class ExtractRecordAttributes(ProcessWindowFunction):
@@ -15,7 +16,7 @@ class ExtractRecordAttributes(ProcessWindowFunction):
         result = ""
         for element in elements:
             parts = UserData(*ast.literal_eval(str(element)))
-            result = (parts.user, parts.rank, str(context.current_processing_time()))
+            result = (parts.user,  re.sub(r'\d+', '', parts.rank), str(context.current_processing_time()))
             yield result
 
     def clear(self, context: 'ProcessWindowFunction.Context'):
