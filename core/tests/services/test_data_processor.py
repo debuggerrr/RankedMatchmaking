@@ -6,7 +6,8 @@ class DataProcessorTest(unittest.TestCase):
 
     def setUp(self) -> None:
         self.extracting_record_attributes = Mock()
-        self.data_processor = DataProcessor(self.extracting_record_attributes)
+        self.group_and_filter = Mock()
+        self.data_processor = DataProcessor(self.extracting_record_attributes, self.group_and_filter)
 
     @patch('kafka.data_processor.DataProcessor._DataProcessor__process_data_stream')
     def test_get_data_stream(self, mock_process_data_stream):
