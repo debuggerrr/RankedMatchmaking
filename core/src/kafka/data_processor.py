@@ -29,7 +29,7 @@ class DataProcessor:
         type i.e Tuple
 
         :param data_stream: input datastream
-        :return: Tuple data
+        :return: List of List of Tuple data
         """
         result_stream = data_stream.process(
             self.extract_record_attributes,

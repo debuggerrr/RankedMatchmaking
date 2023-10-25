@@ -13,6 +13,14 @@ class ExtractRecordAttributes(ProcessWindowFunction):
     def process(self, key: str,
                 context: 'ProcessWindowFunction.Context',
                 elements: Iterable[Tuple[str, str]]) -> Iterable[Tuple[str, str, str]]:
+        """
+        This method will group the tuple elements of a specific window in a list
+
+        :param key: The key for which this window is evaluated
+        :param context: The context holding window metadata
+        :param elements: Input elements
+        :return: List of tuples for a specific window frame.
+        """
         result_list = []
         for element in elements:
             parts = UserData(*ast.literal_eval(str(element)))
