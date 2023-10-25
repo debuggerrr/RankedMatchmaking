@@ -18,7 +18,6 @@ class ExtractRecordAttributes(ProcessWindowFunction):
             parts = UserData(*ast.literal_eval(str(element)))
             result = (parts.user,  re.sub(r'\d+', '', parts.rank), str(context.current_processing_time()))
             result_list.append(result)
-        print(result_list)
         yield result_list
 
     def clear(self, context: 'ProcessWindowFunction.Context'):
