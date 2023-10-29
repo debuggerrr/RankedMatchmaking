@@ -7,7 +7,7 @@ from kafka.publish_data import PublishData
 
 if __name__ == "__main__":
     env = StreamExecutionEnvironment.get_execution_environment()
-    source_data = ConsumeData(env, jarfile="file:///Users/sid/Downloads/flink-sql-connector-kafka-1.17.1.jar")
+    source_data = ConsumeData(env, "localhost:9092", "test-topic2", jarfile="file:///Users/sid/Downloads/flink-sql-connector-kafka-1.17.1.jar")
     ds = source_data.get_kafka_data()
     elements = DataProcessor(ExtractRecordAttributes(), GroupAndFilter()).get_data_stream(ds)
     PublishData("localhost:9092", "test-topic45").publish_data_to_kafka_topic(elements)

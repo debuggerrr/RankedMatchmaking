@@ -2,9 +2,12 @@ from pyflink.datastream.connectors.kafka import KafkaSource, KafkaOffsetsInitial
 from pyflink.datastream.stream_execution_environment import RuntimeExecutionMode
 from pyflink.common import SimpleStringSchema, WatermarkStrategy
 
+
 class ConsumeData:
-    def __init__(self, env, jarfile=None):
+    def __init__(self, env, bootstrap_servers: str, kafka_topic: str, jarfile=None):
         self.env = env
+        self.bootstrap_servers = bootstrap_servers
+        self.kafka_topic = kafka_topic
         self.__configure_environment(jarfile)
 
     def get_kafka_data(self):
@@ -35,9 +38,8 @@ class ConsumeData:
         :return: It will return the KafkaSource object.
         """
         return KafkaSource.builder() \
-            .set_bootstrap_servers("localhost:9092") \
-            .set_topics("test-topic2") \
-            .set_group_id("my-group") \
+            .set_bootstrap_servers(self.bootstrap_servers) \
+            .set_topics(self.kafka_topic) \
             .set_starting_offsets(KafkaOffsetsInitializer.latest()) \
             .set_value_only_deserializer(SimpleStringSchema()) \
             .build()
