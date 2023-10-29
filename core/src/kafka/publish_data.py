@@ -16,10 +16,19 @@ class PublishData:
         self.kafka_topic = kafka_topic
 
     def publish_data_to_kafka_topic(self, datastream: DataStream):
+        """
+        Pushes the datastream elements to kafka topic by converting it to the string format
+        :param datastream: Input datastream
+        :return: None
+        """
         sink = self.__create_kafka_sink()
         datastream.map(lambda e: Row(data=json.dumps(e)), output_type=self.value_type_info).sink_to(sink)
 
     def __create_kafka_sink(self):
+        """
+        Creates Kafka sink with the required properties
+        :return: Returns Kafka sink
+        """
         sink = KafkaSink.builder() \
             .set_bootstrap_servers(self.bootstrap_servers) \
             .set_record_serializer(
