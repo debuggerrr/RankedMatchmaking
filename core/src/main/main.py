@@ -10,6 +10,5 @@ if __name__ == "__main__":
     source_data = ConsumeData(env, jarfile="file:///Users/sid/Downloads/flink-sql-connector-kafka-1.17.1.jar")
     ds = source_data.get_kafka_data()
     elements = DataProcessor(ExtractRecordAttributes(), GroupAndFilter()).get_data_stream(ds)
-    elements.print()
-    PublishData().publish_data_to_kafka_topic(elements)
+    PublishData("localhost:9092", "test-topic45").publish_data_to_kafka_topic(elements)
     env.execute("source")

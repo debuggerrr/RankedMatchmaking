@@ -7,11 +7,13 @@ from pyflink.datastream.formats.json import JsonRowSerializationSchema
 
 class PublishData:
 
-    def __init__(self):
+    def __init__(self, bootstrap_servers: str, kafka_topic: str):
         self.value_type_info = Types.ROW_NAMED(
             field_names=["data"],
             field_types=[Types.STRING()],
         )
+        self.bootstrap_servers = bootstrap_servers
+        self.kafka_topic = kafka_topic
 
     def publish_data_to_kafka_topic(self, datastream: DataStream):
         sink = self.__create_kafka_sink()
@@ -19,10 +21,10 @@ class PublishData:
 
     def __create_kafka_sink(self):
         sink = KafkaSink.builder() \
-            .set_bootstrap_servers("localhost:9092") \
+            .set_bootstrap_servers(self.bootstrap_servers) \
             .set_record_serializer(
             KafkaRecordSerializationSchema.builder()
-            .set_topic("test-topic45")
+            .set_topic(self.kafka_topic)
             .set_value_serialization_schema(
                 JsonRowSerializationSchema.builder().with_type_info(self.value_type_info).build()
             )
