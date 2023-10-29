@@ -1,15 +1,14 @@
 import unittest
 from unittest.mock import patch, Mock
-from pyflink.datastream import StreamExecutionEnvironment
 from kafka.consume_data import ConsumeData
 
 class TestSourceData(unittest.TestCase):
 
     def setUp(self) -> None:
-        self.env = StreamExecutionEnvironment.get_execution_environment()
-        jarfile = "file:///core/lib/flink-sql-connector-kafka-1.17.1.jar"
-        self.env.add_jars(jarfile)
-        self.consume_data = ConsumeData(self.env)
+        self.env = Mock()
+        self.kafka_topic = Mock()
+        self.bootstrap_servers = Mock()
+        self.consume_data = ConsumeData(self.env, self.bootstrap_servers, self.kafka_topic)
 
     @patch('kafka.consume_data.ConsumeData._ConsumeData__create_kafka_source')
     @patch('kafka.consume_data.ConsumeData._ConsumeData__create_data_stream')
