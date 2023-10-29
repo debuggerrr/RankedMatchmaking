@@ -14,7 +14,7 @@ class DataProcessor:
 
     def get_data_stream(self, data_stream: DataStream):
         """
-        This method will accept the elements per 5 seconds window.
+        This method will accept the elements per 10 seconds window.
 
         :param data_stream: It will accept the datastream
         :return: It will print the datastream
@@ -35,5 +35,5 @@ class DataProcessor:
         result_stream = data_stream.process(
             self.extract_record_attributes,
             output_type=Types.LIST(Types.TUPLE([Types.STRING(), Types.STRING(), Types.STRING()]))
-        ).process(GroupAndFilter()).uid("extract_tuple")
+        ).process(self.group_and_filter).uid("extract_tuple")
         return result_stream
