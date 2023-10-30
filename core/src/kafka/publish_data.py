@@ -1,4 +1,3 @@
-import json
 from pyflink.common import Types, Row
 from pyflink.datastream import DataStream
 from pyflink.datastream.connectors.kafka import KafkaSink, KafkaRecordSerializationSchema
@@ -22,7 +21,7 @@ class PublishData:
         :return: None
         """
         sink = self.__create_kafka_sink()
-        datastream.map(lambda e: Row(data=json.dumps(e)), output_type=self.value_type_info).sink_to(sink)
+        datastream.map(lambda e: Row(data=str(e)), output_type=self.value_type_info).sink_to(sink)
 
     def __create_kafka_sink(self):
         """
