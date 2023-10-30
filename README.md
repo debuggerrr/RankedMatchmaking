@@ -28,7 +28,7 @@ How to build this project locally
 ## Architecture
 
 - High Level Design ( HLD )
-  ![HLD](Docs/ranked_matchmaking.png)
+  ![HLD](Docs/RankedMatchmaking.gif)
 
 (Initial draft - https://excalidraw.com/#room=48e25a95292d84603e8e,w7LfaYK6OrZiOdZ70QFh-A)
 
