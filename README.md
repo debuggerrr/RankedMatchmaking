@@ -8,6 +8,7 @@
 + [Architecture](#architecture)
 + [Getting started](#getting-started)
 + [CI/CD](#cicd)
++ [Roadmap](#roadmap)
 + [Project Status](#project-status)
 + [References](#references)
 
@@ -30,7 +31,7 @@ The project contains source code written in `Pyflink`.
 
 #### High Level Design ( HLD )
 
-![HLD](Docs/RankedMatchmaking.gif)
+![HLD](docs/RankedMatchmaking.gif)
 
 
 ## Getting started
@@ -52,12 +53,12 @@ The project contains source code written in `Pyflink`.
    `kafka-console-producer --topic test-topic2 --bootstrap-server localhost:9092`  
 
 
-5) Submit the PyFlink job:  
+5) Run the invoker:  
    `python core/main/main.py`  
 
 
 6) Start Kafka Consumer:  
-   `kafka-console-consumer --topic test-topic45 --from-beginning  localhost:9092`   
+   `kafka-console-consumer --topic test-topic45  localhost:9092`   
 
 
 7) Trigger the records from Kafka Producer with input format as `("user_name", "rank")`
@@ -68,6 +69,13 @@ CI workflow is implemented via Github Actions.
 
 It covers the following step:
 * `Test`: Source code is tested using `tox`
+
+## Roadmap  
+
+- [Consider one rank level above or below too](https://github.com/debuggerrr/RankedMatchmaking/issues/33)
+- [Implement count window](https://github.com/debuggerrr/RankedMatchmaking/issues/31)
+- [Fault tolerance](https://github.com/debuggerrr/RankedMatchmaking/issues/30)  
+
 
 ## Project Status
 Development phase - Beta version
