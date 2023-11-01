@@ -8,6 +8,7 @@
 + [Architecture](#architecture)
 + [Getting started](#getting-started)
 + [CI/CD](#cicd)
++ [Roadmap](#roadmap)
 + [Project Status](#project-status)
 + [References](#references)
 
