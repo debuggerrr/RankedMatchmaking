@@ -30,7 +30,7 @@ The project contains source code written in `Pyflink`.
 
 #### High Level Design ( HLD )
 
-![HLD](Docs/RankedMatchmaking.gif)
+![HLD](docs/RankedMatchmaking.gif)
 
 
 ## Getting started
@@ -68,6 +68,13 @@ CI workflow is implemented via Github Actions.
 
 It covers the following step:
 * `Test`: Source code is tested using `tox`
+
+## Roadmap  
+
+- [Consider one rank level above or below too](https://github.com/debuggerrr/RankedMatchmaking/issues/33)
+- [Implement count window](https://github.com/debuggerrr/RankedMatchmaking/issues/31)
+- [Fault tolerance](https://github.com/debuggerrr/RankedMatchmaking/issues/30)  
+
 
 ## Project Status
 Development phase - Beta version
