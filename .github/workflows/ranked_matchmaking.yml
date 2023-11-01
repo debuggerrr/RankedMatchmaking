@@ -1,17 +1,12 @@
 name: RankedMatchmaking
 
 on:
+  pull_request:
+    types: [ opened, reopened, synchronize ]
   push:
     branches:
-      - 'main'
-      - 'develop'
-      - 'feature/*'
-      - 'fix/*'
-      - 'enhancement/*'
-  pull_request:
-    branches:
-      - 'develop'
-      - 'main'
+      - '**'
+
 
 permissions:
   contents: read
