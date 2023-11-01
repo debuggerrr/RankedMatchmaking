@@ -1,3 +1,4 @@
+import logging
 from pyflink.common import Time, Types
 from pyflink.datastream import DataStream
 from pyflink.datastream.window import TumblingProcessingTimeWindows
@@ -22,6 +23,7 @@ class DataProcessor:
         result_stream = data_stream.window_all(
             TumblingProcessingTimeWindows.of(Time.seconds(10))
         )
+        logging.info("data for 10 seconds window has been collected...")
         return self.__process_data_stream(result_stream)
 
     def __process_data_stream(self, data_stream: AllWindowedStream):
@@ -36,4 +38,5 @@ class DataProcessor:
             self.extract_record_attributes,
             output_type=Types.LIST(Types.TUPLE([Types.STRING(), Types.STRING(), Types.STRING()]))
         ).process(self.group_and_filter).uid("extract_tuple")
+        logging.info("data has been processed by respective functions...")
         return result_stream

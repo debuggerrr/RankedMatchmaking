@@ -1,3 +1,4 @@
+import logging
 from collections import defaultdict
 from pyflink.datastream import ProcessFunction
 
@@ -22,5 +23,6 @@ class GroupAndFilter(ProcessFunction):
         for rank, users in grouped_data.items():
             for i in range(0, len(users), 3):
                 result.append(tuple(users[i:i+3]))
+        logging.info(f"data formed in groups as {result}")
         yield result
 
