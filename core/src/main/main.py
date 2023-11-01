@@ -14,4 +14,4 @@ if __name__ == "__main__":
     ds = source_data.get_kafka_data()
     elements = DataProcessor(ExtractRecordAttributes(), GroupAndFilter()).get_data_stream(ds)
     PublishData("localhost:9092", "test-topic45").publish_data_to_kafka_topic(elements)
-    env.execute("RankedMatchmakingApp")
+    env.execute("source")
