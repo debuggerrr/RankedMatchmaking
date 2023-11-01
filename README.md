@@ -53,12 +53,12 @@ The project contains source code written in `Pyflink`.
    `kafka-console-producer --topic test-topic2 --bootstrap-server localhost:9092`  
 
 
-5) Submit the PyFlink job:  
+5) Run the invoker:  
    `python core/main/main.py`  
 
 
 6) Start Kafka Consumer:  
-   `kafka-console-consumer --topic test-topic45 --from-beginning  localhost:9092`   
+   `kafka-console-consumer --topic test-topic45  localhost:9092`   
 
 
 7) Trigger the records from Kafka Producer with input format as `("user_name", "rank")`
