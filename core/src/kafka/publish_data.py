@@ -1,3 +1,4 @@
+import logging
 from pyflink.common import Types, Row
 from pyflink.datastream import DataStream
 from pyflink.datastream.connectors.kafka import KafkaSink, KafkaRecordSerializationSchema
@@ -22,6 +23,7 @@ class PublishData:
         """
         sink = self.__create_kafka_sink()
         datastream.map(lambda e: Row(data=str(e)), output_type=self.value_type_info).sink_to(sink)
+        logging.info("data has been pushed to Kafka topic...")
 
     def __create_kafka_sink(self):
         """

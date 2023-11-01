@@ -1,3 +1,4 @@
+import logging
 from pyflink.datastream.connectors.kafka import KafkaSource, KafkaOffsetsInitializer
 from pyflink.datastream.stream_execution_environment import RuntimeExecutionMode
 from pyflink.common import SimpleStringSchema, WatermarkStrategy
@@ -17,6 +18,7 @@ class ConsumeData:
         """
         source = self.__create_kafka_source()
         ds = self.__create_data_stream(source)
+        logging.info("datastream has been created...")
         return ds
 
     def __configure_environment(self, jarfile=None):

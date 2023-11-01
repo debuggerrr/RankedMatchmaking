@@ -4,6 +4,7 @@ from model.model import UserData
 import ast
 import re
 import datetime
+import logging
 
 
 class ExtractRecordAttributes(ProcessAllWindowFunction):
@@ -25,6 +26,7 @@ class ExtractRecordAttributes(ProcessAllWindowFunction):
             parts = UserData(*ast.literal_eval(str(element)))
             result = (parts.user, re.sub(r'\d+', '', parts.rank), str(self.__get_epoch_timestamp()))
             result_list.append(result)
+        logging.info(f"data extracted as {str(result_list)}")
         yield result_list
 
     def clear(self, context: 'ProcessAllWindowFunction.Context'):
