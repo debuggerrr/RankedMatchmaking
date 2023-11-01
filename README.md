@@ -60,7 +60,7 @@ The project contains source code written in `Pyflink`.
    `kafka-console-consumer --topic test-topic45 --from-beginning  localhost:9092`   
 
 
-7) Trigger the records from Kafka Producer.
+7) Trigger the records from Kafka Producer with input format as `("user_name", "rank")`
 
 
 ## CI/CD
